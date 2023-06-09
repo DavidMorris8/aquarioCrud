@@ -1,21 +1,29 @@
 create database SENAI_PW;
 use SENAI_PW;
-create table CLIENTE(
+create table clientes(
 	id int not null auto_increment,
     nome varchar(100) not null,
     idade smallint null,
-    cpf bigint  not null unique,
+    cpf bigint not null unique,
     primary key(id)
 );
-create table PRODUTO(
+create table produtos(
 	id int not null auto_increment,
     nome varchar(100) not null,
-    quantidade int null default 1,
+    quantidade int not null,
     valor numeric(9,2) not null,
     primary key(id)
 );
-create table TURMAS(
+
+select * from clientes;
+
+create table vendas(
 	id int not null auto_increment,
-    id_ESCOLA INT NOT NULL,
-    ID_PROFESSOR INT NO
+    idCliente int not null,
+    idProduto int not null,
+    diaVenda date not null,
+    quantidade int not null,
+    primary key(id),
+    constraint fk_vendas_clientes foreign key(idCliente) references clientes(id),
+    constraint fk_vendas_produtos foreign key(idProduto) references produtos(id)
 );
